@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "@salesforce/eslint-config-lwc/recommended",
+    "prettier",
+    "plugin:jest/recommended",
+    "plugin:json/recommended"
+  ],
+  "plugins": ["prettier", "json"],
+  "overrides": [
+    {
+      "files": ["*.test.js"],
+      "plugins": ["jest", "jest-dom"],
+      "rules": {
+        "@lwc/lwc/no-unexpected-wire-adapter-usages": "off"
+      }
+    }
+  ],
+  "env": {
+    "node": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": "latest"
+  }
+}
