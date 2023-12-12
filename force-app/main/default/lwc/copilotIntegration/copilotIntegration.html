@@ -1,1 +1,15 @@
-<template> </template>
+<template>
+  <lightning-card title="HelloWorld" icon-name="custom:custom14">
+    <div class="slds-m-around_medium">
+      <template lwc:if={copilotUrl}>
+        <iframe src={copilotUrl} frameborder="0"></iframe>
+      </template>
+    </div>
+    <div>
+      Debug data:
+      <pre>Record ID: {recordId}</pre>
+      <pre>Copilot URL: {copilotUrl}</pre>
+      <pre>Record Data: {recordData}</pre>
+    </div>
+  </lightning-card>
+</template>
