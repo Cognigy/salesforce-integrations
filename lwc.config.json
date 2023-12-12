@@ -1,0 +1,6 @@
+{
+  "modules": [
+    { "npm": "lightning-base-components" },
+    { "dir": "force-app/main/default/lwc/copilotIntegration" }
+  ]
+}
