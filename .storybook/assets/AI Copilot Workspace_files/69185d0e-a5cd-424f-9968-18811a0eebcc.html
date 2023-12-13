@@ -1,0 +1,90 @@
+<!doctype html>
+<!-- saved from url=(0077)blob:https://agent-assist-dev.cognigy.ai/69185d0e-a5cd-424f-9968-18811a0eebcc -->
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Next Best Action</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <script>
+      let showButton = false;
+
+      function updateButtonVisibility() {
+        const button = document.getElementById("liveAgentForwardButton");
+        if (button) {
+          button.className = showButton
+            ? "absolute bottom-0 right-0 flex items-center justify-center"
+            : "hidden";
+        }
+      }
+
+      window.addEventListener("message", (event) => {
+        const message = event.data;
+
+        if (message.type === "toggleButton") {
+          showButton = message.show;
+          updateButtonVisibility();
+        }
+      });
+
+      function sendPostMessage() {
+        const content = document.querySelector("p").innerHTML;
+        window.parent.postMessage(
+          { type: "replyBoxContent", content },
+          "https://agent-assist-dev.cognigy.ai"
+        );
+      }
+
+      document.addEventListener("DOMContentLoaded", updateButtonVisibility);
+    </script>
+  </head>
+  <body>
+    <div class="flex h-screen flex-col justify-center bg-gray-100 pb-1">
+      <div
+        class="relative flex flex-1 overflow-hidden rounded-xl bg-white shadow-md"
+      >
+        <div class="absolute right-2 top-2">
+          <img
+            class="h-6 w-6"
+            src="https://www.cognigy.com/hubfs/AI%20badge.png"
+            alt="AI Logo"
+          />
+        </div>
+        <div>
+          <div
+            class="text-sm font-semibold uppercase tracking-wide ml-6 mt-6 text-indigo-500"
+          >
+            Next Best Action
+          </div>
+          <div class="p-6 overflow-auto h-5/6">
+            <p class="mt-2 text-gray-800">
+              Sure, please tell me your preferred depature airport.
+            </p>
+          </div>
+          <button
+            id="liveAgentForwardButton"
+            onclick="sendPostMessage()"
+            class="hidden"
+          >
+            <svg
+              width="45px"
+              height="auto"
+              viewBox="0 0 45 35"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M 18.17 19.653 C 18.538 19.338 16.6 12.9 30.995 15.028 L 30.968 18.05 L 39.7 12.4 L 31.021 6.619 L 31.021 9.326 C 30.1 10.2 16.042 8.143 18.118 19.627"
+                fill="#0b3694"
+                transform="scale(-1, 1) translate(-50, 0)"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

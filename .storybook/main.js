@@ -13,6 +13,7 @@ const config = {
       }
     }
   },
+  staticDirs: ["./assets"],
   docs: {
     autodocs: "tag"
   },

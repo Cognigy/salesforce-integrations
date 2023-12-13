@@ -1,0 +1,556 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="AI Copilot Workspace" />
+    <link
+      rel="apple-touch-icon"
+      href="https://agent-assist-dev.cognigy.ai/logo192.png"
+    />
+    <link rel="manifest" href="/manifest.json" />
+
+    <title>AI Copilot Workspace</title>
+    <script
+      type="module"
+      crossorigin=""
+      src="https://agent-assist-dev.cognigy.ai/assets/index-562c9c25.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://agent-assist-dev.cognigy.ai/assets/index-af9cfed8.css"
+    />
+    <style>
+      [data-cognigy-webchat-root] .sr-only {
+        position: absolute;
+        left: -10000px;
+        width: 1px;
+        height: 1px;
+        top: auto;
+        overflow: hidden;
+      }
+    </style>
+    <style>
+      /********************************************
+	BREAKPOINT WIDTHS
+********************************************/
+
+      /********************************************
+	FONTS
+********************************************/
+
+      /********************************************
+	COLOURS
+********************************************/
+
+      [data-cognigy-webchat-root] .carousel .control-arrow,
+      .carousel.carousel-slider .control-arrow {
+        -webkit-transition: all 0.25s ease-in;
+        -moz-transition: all 0.25s ease-in;
+        -ms-transition: all 0.25s ease-in;
+        -o-transition: all 0.25s ease-in;
+        transition: all 0.25s ease-in;
+        opacity: 0.4;
+        filter: alpha(opacity=40);
+        position: absolute;
+        z-index: 2;
+        top: 20px;
+        background: none;
+        border: 0;
+        font-size: 32px;
+        cursor: pointer;
+      }
+
+      [data-cognigy-webchat-root] .carousel .control-arrow:hover {
+        opacity: 1;
+        filter: alpha(opacity=100);
+      }
+
+      [data-cognigy-webchat-root] .carousel .control-arrow:before,
+      .carousel.carousel-slider .control-arrow:before {
+        margin: 0 5px;
+        display: inline-block;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        content: "";
+      }
+
+      [data-cognigy-webchat-root] .carousel .control-disabled.control-arrow {
+        opacity: 0;
+        filter: alpha(opacity=0);
+        cursor: inherit;
+        display: none;
+      }
+
+      [data-cognigy-webchat-root] .carousel .control-prev.control-arrow {
+        left: 0;
+      }
+
+      [data-cognigy-webchat-root] .carousel .control-prev.control-arrow:before {
+        border-right: 8px solid #fff;
+      }
+
+      [data-cognigy-webchat-root] .carousel .control-next.control-arrow {
+        right: 0;
+      }
+
+      [data-cognigy-webchat-root] .carousel .control-next.control-arrow:before {
+        border-left: 8px solid #fff;
+      }
+
+      [data-cognigy-webchat-root] .carousel {
+        position: relative;
+        width: 100%;
+      }
+
+      [data-cognigy-webchat-root] .carousel * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      [data-cognigy-webchat-root] .carousel img {
+        width: 100%;
+        display: inline-block;
+        pointer-events: none;
+      }
+
+      [data-cognigy-webchat-root] .carousel .carousel {
+        position: relative;
+      }
+
+      [data-cognigy-webchat-root] .carousel .control-arrow {
+        outline: 0;
+        border: 0;
+        background: none;
+        top: 50%;
+        margin-top: -13px;
+        font-size: 18px;
+      }
+
+      [data-cognigy-webchat-root] .carousel .thumbs-wrapper {
+        margin: 20px;
+        overflow: hidden;
+      }
+
+      [data-cognigy-webchat-root] .carousel .thumbs {
+        -webkit-transition: all 0.15s ease-in;
+        -moz-transition: all 0.15s ease-in;
+        -ms-transition: all 0.15s ease-in;
+        -o-transition: all 0.15s ease-in;
+        transition: all 0.15s ease-in;
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        -o-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        position: relative;
+        list-style: none;
+        white-space: nowrap;
+      }
+
+      [data-cognigy-webchat-root] .carousel .thumb {
+        -webkit-transition: border 0.15s ease-in;
+        -moz-transition: border 0.15s ease-in;
+        -ms-transition: border 0.15s ease-in;
+        -o-transition: border 0.15s ease-in;
+        transition: border 0.15s ease-in;
+        display: inline-block;
+        width: 80px;
+        margin-right: 6px;
+        white-space: nowrap;
+        overflow: hidden;
+        border: 3px solid #fff;
+        padding: 2px;
+      }
+
+      [data-cognigy-webchat-root] .carousel .thumb:focus {
+        border: 3px solid #ccc;
+        outline: none;
+      }
+
+      [data-cognigy-webchat-root] .carousel .thumb.selected,
+      .carousel .thumb:hover {
+        border: 3px solid #333;
+      }
+
+      [data-cognigy-webchat-root] .carousel .thumb img {
+        vertical-align: top;
+      }
+
+      [data-cognigy-webchat-root] .carousel.carousel-slider {
+        position: relative;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      [data-cognigy-webchat-root] .carousel.carousel-slider .control-arrow {
+        top: 0;
+        color: #fff;
+        font-size: 26px;
+        bottom: 0;
+        margin-top: 0;
+        padding: 5px;
+      }
+
+      [data-cognigy-webchat-root]
+        .carousel.carousel-slider
+        .control-arrow:hover,
+      [data-cognigy-webchat-root]
+        .carousel.carousel-slider
+        .control-arrow:focus {
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      [data-cognigy-webchat-root] .carousel .slider-wrapper {
+        overflow: hidden;
+        margin: auto;
+        width: 100%;
+        -webkit-transition: height 0.15s ease-in;
+        -moz-transition: height 0.15s ease-in;
+        -ms-transition: height 0.15s ease-in;
+        -o-transition: height 0.15s ease-in;
+        transition: height 0.15s ease-in;
+      }
+
+      [data-cognigy-webchat-root]
+        .carousel
+        .slider-wrapper.axis-horizontal
+        .slider {
+        -ms-box-orient: horizontal;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -moz-flex;
+        display: -webkit-flex;
+        display: flex;
+      }
+
+      [data-cognigy-webchat-root]
+        .carousel
+        .slider-wrapper.axis-horizontal
+        .slider
+        .slide {
+        flex-direction: column;
+        flex-flow: column;
+      }
+
+      [data-cognigy-webchat-root] .carousel .slider-wrapper.axis-vertical {
+        -ms-box-orient: horizontal;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -moz-flex;
+        display: -webkit-flex;
+        display: flex;
+      }
+
+      [data-cognigy-webchat-root]
+        .carousel
+        .slider-wrapper.axis-vertical
+        .slider {
+        -webkit-flex-direction: column;
+        flex-direction: column;
+      }
+
+      [data-cognigy-webchat-root] .carousel .slider {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        list-style: none;
+        width: 100%;
+      }
+
+      [data-cognigy-webchat-root] .carousel .slider.animated {
+        -webkit-transition: all 0.35s ease-in-out;
+        -moz-transition: all 0.35s ease-in-out;
+        -ms-transition: all 0.35s ease-in-out;
+        -o-transition: all 0.35s ease-in-out;
+        transition: all 0.35s ease-in-out;
+      }
+
+      [data-cognigy-webchat-root] .carousel .slide {
+        min-width: 100%;
+        margin: 0;
+        position: relative;
+        /* text-align: center; */
+        /* background: #000; */
+      }
+
+      [data-cognigy-webchat-root] .carousel .slide img {
+        width: 100%;
+        vertical-align: top;
+        border: 0;
+      }
+
+      [data-cognigy-webchat-root] .carousel .slide iframe {
+        display: inline-block;
+        width: calc(100% - 80px);
+        margin: 0 40px 40px;
+        border: 0;
+      }
+
+      [data-cognigy-webchat-root] .carousel .slide .legend {
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -ms-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        margin-left: -45%;
+        width: 90%;
+        border-radius: 10px;
+        background: #000;
+        color: #fff;
+        padding: 10px;
+        font-size: 12px;
+        text-align: center;
+        opacity: 0.25;
+        -webkit-transition: opacity 0.35s ease-in-out;
+        -moz-transition: opacity 0.35s ease-in-out;
+        -ms-transition: opacity 0.35s ease-in-out;
+        -o-transition: opacity 0.35s ease-in-out;
+        transition: opacity 0.35s ease-in-out;
+      }
+
+      [data-cognigy-webchat-root] .carousel .control-dots {
+        position: absolute;
+        bottom: 0;
+        margin: 10px 0;
+        text-align: center;
+        width: 100%;
+      }
+
+      @media (min-width: 960px) {
+        .carousel .control-dots {
+          bottom: 0;
+        }
+      }
+
+      [data-cognigy-webchat-root] .carousel .control-dots .dot {
+        -webkit-transition: opacity 0.25s ease-in;
+        -moz-transition: opacity 0.25s ease-in;
+        -ms-transition: opacity 0.25s ease-in;
+        -o-transition: opacity 0.25s ease-in;
+        transition: opacity 0.25s ease-in;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+        background: #fff;
+        border-radius: 50%;
+        width: 8px;
+        height: 8px;
+        cursor: pointer;
+        display: inline-block;
+        margin: 0 8px;
+      }
+
+      [data-cognigy-webchat-root] .carousel .control-dots .dot.selected,
+      .carousel .control-dots .dot:hover {
+        opacity: 1;
+        filter: alpha(opacity=100);
+      }
+
+      [data-cognigy-webchat-root] .carousel .carousel-status {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 5px;
+        font-size: 10px;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);
+        color: #fff;
+      }
+
+      [data-cognigy-webchat-root] .carousel:hover .slide .legend {
+        opacity: 1;
+      }
+    </style>
+    <style type="text/css" id="accss"></style>
+    <style data-emotion="css" data-s="">
+      .css-1qip1ha {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+      }
+      .css-1g4g2nb {
+        width: 100%;
+        height: 100%;
+        border: 0px;
+        border-radius: 5px;
+      }
+    </style>
+    <style data-emotion="css-global" data-s=""></style>
+    <style data-emotion="css" data-s=""></style>
+  </head>
+
+  <body class="overflow-hidden bg-gray-100 text-black/90">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+      <div
+        data-testid="grid-container"
+        class="shadow-inner p-4 pb-12 gap-4 bg-gray-100 grid box-border justify-stretch items-stretch content-stretch h-screen w-screen"
+        style="
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(8, 1fr);
+          gap: 10px;
+        "
+      >
+        <div
+          data-testid="tile"
+          data-tile-id="identity-assist"
+          data-tile-version="1"
+          style="grid-area: 1 / 1 / span 4 / span 1; overflow: auto"
+        >
+          <div class="css-1qip1ha">
+            <iframe
+              data-testid="html-tile-identity-assist"
+              src="http://localhost:6006/tile_identity_assist.html"
+              allow="clipboard-write self *"
+              class="css-1g4g2nb"
+            ></iframe>
+          </div>
+        </div>
+        <div
+          data-testid="tile"
+          data-tile-id="transcript-assist"
+          data-tile-version="2"
+          style="grid-area: 1 / 2 / span 2 / span 2; overflow: auto"
+        >
+          <div class="css-1qip1ha">
+            <iframe
+              data-testid="html-tile-transcript-assist"
+              src="http://localhost:6006/tile_transcript_assist.html"
+              allow="clipboard-write self *"
+              class="css-1g4g2nb"
+            ></iframe>
+          </div>
+        </div>
+        <div
+          data-testid="tile"
+          data-tile-id="next-action"
+          data-tile-version="2"
+          style="grid-area: 3 / 2 / span 2 / span 2; overflow: auto"
+        >
+          <div class="css-1qip1ha">
+            <iframe
+              data-testid="html-tile-next-action"
+              src="http://localhost:6006/tile_next_action.html"
+              allow="clipboard-write self *"
+              class="css-1g4g2nb"
+            ></iframe>
+          </div>
+        </div>
+        <div
+          data-testid="tile"
+          data-tile-id="knowledge-assist"
+          data-tile-version="2"
+          style="grid-area: 5 / 2 / span 4 / span 2; overflow: auto"
+        >
+          <div class="css-1qip1ha">
+            <iframe
+              data-testid="html-tile-knowledge-assist"
+              src="http://localhost:6006/tile_knowledge_assist.html"
+              allow="clipboard-write self *"
+              class="css-1g4g2nb"
+            ></iframe>
+          </div>
+        </div>
+        <div
+          data-testid="tile"
+          data-tile-id="event-assist"
+          data-tile-version="1"
+          style="grid-area: 5 / 1 / span 4 / span 1; overflow: auto"
+        >
+          <div class="css-1qip1ha">
+            <iframe
+              data-testid="html-tile-event-assist"
+              src="http://localhost:6006/tile_event_details.html"
+              allow="clipboard-write self *"
+              class="css-1g4g2nb"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="css-iiam5k">
+        <a class="css-1bshes6" data-testid="branding" href="https://cognigy.com"
+          >Powered by<svg
+            width="194px"
+            height="20px"
+            class="logo"
+            viewBox="0 0 194 20"
+            version="1.1"
+          >
+            <title>Cognigy.AI</title>
+            <g
+              id="Page-1"
+              stroke="none"
+              stroke-width="1"
+              fill="none"
+              fill-rule="evenodd"
+            >
+              <g
+                id="01-copy-2"
+                transform="translate(-108.000000, -272.000000)"
+                fill-rule="nonzero"
+              >
+                <g
+                  id="logo_cognigy.ai-(194x20)"
+                  transform="translate(108.000000, 272.000000)"
+                >
+                  <path
+                    d="M149.157109,0.0289066667 L145.077109,0.0289066667 L145.077109,4.23193637 C145.077109,6.35273117 143.997109,7.39384863 141.797109,7.39384863 L136.157109,7.39384863 C133.997109,7.39384863 132.917109,6.35273117 132.917109,4.23193637 L132.877109,0.0289066667 L128.837109,0.0289066667 L128.837109,4.73321515 C128.837109,9.09048448 131.077109,11.2498392 135.597109,11.2498392 L136.945109,11.2498392 L136.945109,19.6289067 L141.025109,19.6289067 L141.025109,11.2498392 L142.357109,11.2498392 C146.877109,11.2498392 149.117109,9.09048448 149.117109,4.73321515 L149.157109,1.18570384 L149.157109,0.0289066667 L149.157109,0.0289066667 Z"
+                    id="Path-Copy-2"
+                    fill="#cccccc"
+                  ></path>
+                  <path
+                    d="M19.6289063,19.6289063 L19.6289063,15.7031251 L7.09257812,15.7031251 C4.98138021,15.7031251 3.92578125,14.651888 3.92578125,12.5494141 L3.92578125,12.5494141 L3.92578125,7.06640625 C3.92578125,4.97265625 4.97701823,3.92578125 7.07949219,3.92578125 L7.07949219,3.92578125 L19.6289063,3.92578125 L19.6289063,8.8817842e-15 L6.54296875,8.8817842e-15 C2.18098959,8.8817842e-15 -2.27373675e-13,2.18098959 -2.27373675e-13,6.54296875 L-2.27373675e-13,6.54296875 L-2.27373675e-13,13.0859375 C-2.27373675e-13,17.4479167 2.18098959,19.6289063 6.54296875,19.6289063 L6.54296875,19.6289063 L19.6289063,19.6289063 Z M30.7376563,19.6419921 L37.2806251,19.6289063 C41.6426041,19.6201823 43.8235937,17.4391927 43.8235937,13.0859375 L43.8235937,13.0859375 L43.8235937,6.54296875 C43.8235937,2.18098959 41.6426041,8.8817842e-15 37.2806251,8.8817842e-15 L37.2806251,8.8817842e-15 L30.7376563,8.8817842e-15 C26.3756771,8.8817842e-15 24.1946875,2.18098959 24.1946875,6.54296875 L24.1946875,6.54296875 L24.1946875,13.0859375 C24.1946875,17.4479167 26.3756771,19.6289063 30.7376563,19.6289063 L30.7376563,19.6289063 L30.7376563,19.6419921 Z M36.6263281,15.7031251 L31.3919532,15.7031251 C29.2109636,15.7031251 28.1204688,14.6126303 28.1204688,12.4316406 L28.1204688,12.4316406 L28.1204688,7.19726563 C28.1204688,5.01627604 28.9928645,3.92578125 30.7376563,3.92578125 L30.7376563,3.92578125 L36.6263281,3.92578125 C38.8073177,3.92578125 39.8978125,5.01627604 39.8978125,7.19726563 L39.8978125,7.19726563 L39.8978125,12.4316406 C39.8978125,14.6126303 38.8073177,15.7031251 36.6263281,15.7031251 L36.6263281,15.7031251 Z M68.0182813,19.6289063 L68.0182813,9.16015625 L64.0925,9.16015625 L64.0925,15.7031251 L55.4819532,15.7031251 C53.3707552,15.7031251 52.3151563,14.651888 52.3151563,12.5494141 L52.3151563,12.5494141 L52.3151563,7.06640625 C52.3151563,4.97265625 53.3663932,3.92578125 55.4688672,3.92578125 L55.4688672,3.92578125 L68.0182813,3.92578125 L68.0182813,8.8817842e-15 L54.9323437,8.8817842e-15 C50.5703647,8.8817842e-15 48.3893751,2.18098959 48.3893751,6.54296875 L48.3893751,6.54296875 L48.3893751,13.0859375 C48.3893751,17.4479167 50.5703647,19.6289063 54.9323437,19.6289063 L54.9323437,19.6289063 L68.0182813,19.6289063 Z M76.5098437,19.6289063 L76.5098437,5.95410156 L88.2217579,19.6289063 L92.2129688,19.6289063 L92.2129688,8.8817842e-15 L88.2871875,8.8817842e-15 L88.2871875,13.6748047 L76.5883595,8.8817842e-15 L72.5840625,8.8817842e-15 L72.5840625,19.6289063 L76.5098437,19.6289063 Z M100.704531,19.6289063 L100.704531,8.8817842e-15 L96.77875,8.8817842e-15 L96.77875,19.6289063 L100.704531,19.6289063 Z M124.899219,19.6289063 L124.899219,9.16015625 L120.973438,9.16015625 L120.973438,15.7031251 L112.362891,15.7031251 C110.251693,15.7031251 109.196094,14.651888 109.196094,12.5494141 L109.196094,12.5494141 L109.196094,7.06640625 C109.196094,4.97265625 110.247331,3.92578125 112.349805,3.92578125 L112.349805,3.92578125 L124.899219,3.92578125 L124.899219,8.8817842e-15 L111.813281,8.8817842e-15 C107.451302,8.8817842e-15 105.270313,2.18098959 105.270313,6.54296875 L105.270313,6.54296875 L105.270313,13.0859375 C105.270313,17.4479167 107.451302,19.6289063 111.813281,19.6289063 L111.813281,19.6289063 L124.899219,19.6289063 Z"
+                    id="Cognig"
+                    fill="#cccccc"
+                  ></path>
+                  <polygon
+                    id=".AI-path"
+                    fill="#cccccc"
+                    points="159.925781 13.7622396 159.925781 9.8364584 156 9.8364584 156 13.7622396"
+                  ></polygon>
+                  <polygon
+                    id=".AI-path"
+                    fill="#cccccc"
+                    points="169.291953 19.7622396 175.664805 5.06673177 182.050743 19.7622396 186.316757 19.7622396 177.797812 0.133333333 173.531797 0.133333333 165.012852 19.7622396"
+                  ></polygon>
+                  <polygon
+                    id=".AI-path"
+                    fill="#cccccc"
+                    points="193.303437 19.7622396 193.303437 0.133333333 189.377656 0.133333333 189.377656 19.7622396"
+                  ></polygon>
+                </g>
+              </g>
+            </g></svg
+        ></a>
+        <div class="css-zdpnst">
+          <svg
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-bwcm17"
+            focusable="false"
+            aria-hidden="true"
+            viewBox="0 -960 960 960"
+            height="48"
+            width="48"
+            data-testid="unknown-tile-indicator"
+          >
+            <path
+              d="M180-820v295-4 389-680 186-186Zm99 400h168q12-17 26.5-32t31.5-28H279v60Zm0 170h123q-2-15-1.5-30t2.5-30H279v60ZM180-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v155q-14-7-29-11.5t-31-7.5v-109H511v-186H180v680h260q11 17 24 32t28 28H180Zm475-389q80.51 0 137.255 56.745Q849-355.51 849-275q0 80.51-56.745 137.255Q735.51-81 655-81q-80.51 0-137.255-56.745Q461-194.49 461-275q0-80.51 56.745-137.255Q574.49-469 655-469Zm1.108 318Q668-151 676-159.108t8-20Q684-191 675.892-199t-20-8Q644-207 636-198.892t-8 20Q628-167 636.108-159t20 8ZM636-233h40v-10.952Q676-256 682.5-266q6.5-10 15.227-18.4Q713-297 722.5-309.5 732-322 732-342q0-31.719-21.297-50.859Q689.407-412 655.78-412 630-412 609-397.5t-29 39.986L616-342q2-14 13.5-23.5t26.948-9.5q16.552 0 26.052 8.25T692-342q0 11-7 19.5T670-306q-8 7-15.5 14T642-277q-4 7-5 13.3-1 6.3-1 14.7v16Z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <script src="./assets/renderPlugins/message-renderer.js"></script>
+    <script src="./config.js"></script>
+  </body>
+</html>

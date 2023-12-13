@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Knowledge Base</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+  </head>
+  <body>
+    <div class="flex h-screen items-center justify-center bg-gray-100">
+      <div
+        class="flex h-full w-full flex-col overflow-auto rounded-xl bg-white p-6 shadow-md"
+      >
+        <div class="flex items-center">
+          <div
+            class="text-sm font-semibold uppercase tracking-wide text-indigo-500"
+          >
+            Search
+          </div>
+          <input
+            id="searchInput"
+            type="text"
+            class="w-full rounded-l-md border p-2 ml-2"
+            placeholder="Search your knowledge base"
+          />
+          <button
+            id="postbackButton"
+            class="flex items-center rounded-r-md bg-indigo-100 px-4 py-2"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/7047/7047900.png"
+              alt="Search Icon"
+              class="h-6 w-8 text-white"
+            />
+          </button>
+        </div>
+
+        <script>
+          const u = (o) => ({
+              __INTER_FRAME_SOCKET_MESSAGE: !0,
+              workspaceEvent: o
+            }),
+            h = (o, e) => ({ type: o, payload: e }),
+            w = (o) => {
+              var e;
+              return !!((e = o.data) != null && e.__INTER_FRAME_SOCKET_MESSAGE);
+            };
+          class b {
+            constructor(e, a, d) {
+              (this.sourceWindow = e),
+                (this.targetWindow = a),
+                (this.targetOrigin = d),
+                (this.emit = (s, r) => {
+                  const t = h(s, r),
+                    i = u(t);
+                  this.targetWindow.postMessage(i, this.targetOrigin);
+                });
+            }
+          }
+          class c {
+            constructor() {
+              console.log(document.referrer ?? window.origin);
+
+              this.socket = new b(
+                window,
+                window.parent,
+                new URL(
+                  document?.referrer ||
+                    window?.origin ||
+                    "https://agent-assist-dev.cognigy.ai"
+                ).origin
+              );
+              c.log("initialized");
+              return this; // Return this object.
+            }
+            postback(e) {
+              this.socket.emit("postback", e); // Send the postback event immediately.
+              return this; // Return this object for chaining.
+            }
+            static log(...e) {
+              console.log("[AgentAssistWorkspaceSDK]", ...e);
+            }
+          }
+          window.SDK = new c();
+
+          window.document.getElementById("postbackButton").onclick = () => {
+            // data to be send in postback
+            const input = document.getElementById("searchInput").value;
+            const data = { searchString: input, tileId: "knowledge-assist" };
+            window.SDK.postback(data);
+
+            window.document.getElementById("searchInput").value = "";
+
+            window.document.getElementById("loader").style.display = "block";
+
+            window.document.getElementById("textArea").style.display = "none";
+          };
+
+          let showButton = false;
+
+          function updateButtonVisibility() {
+            const button = document.getElementById("liveAgentForwardButton");
+            if (button) {
+              button.className = showButton
+                ? "absolute bottom-0 right-0 flex items-center justify-center"
+                : "hidden";
+            }
+          }
+
+          window.addEventListener("message", (event) => {
+            const message = event.data;
+
+            if (message.type === "toggleButton") {
+              showButton = message.show;
+              updateButtonVisibility();
+            }
+          });
+
+          function sendPostMessage() {
+            const content = document.getElementById("textArea").value;
+            window.parent.postMessage(
+              { type: "replyBoxContent", content },
+              "https://agent-assist-dev.cognigy.ai"
+            );
+          }
+
+          document.addEventListener("DOMContentLoaded", updateButtonVisibility);
+        </script>
+        <div class="text-sm mt-5 tracking-wide text-indigo-500">Hi</div>
+
+        <div class="flex-grow">
+          <div class="flex items-center justify-center mt-2 h-full">
+            <textarea
+              id="textArea"
+              class="w-full h-full rounded-md border p-2"
+              rows="5"
+              placeholder="Your search results will be displayed here"
+            >
+Hi there! I'm an AI Copilot and I'm here to help you with your queries.</textarea
+            >
+            <div
+              id="loader"
+              class="w-2 hidden h-30 rounded-full border-t-4 border-gray-300 border-solid animate-spin"
+              style="border-width: 16px; border-top-color: #3498db"
+            ></div>
+          </div>
+          <button
+            id="liveAgentForwardButton"
+            onclick="sendPostMessage()"
+            class="hidden absolute bottom-0 right-0 flex items-center justify-center"
+          >
+            <svg
+              width="45px"
+              height="auto"
+              viewBox="0 0 45 35"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M 18.17 19.653 C 18.538 19.338 16.6 12.9 30.995 15.028 L 30.968 18.05 L 39.7 12.4 L 31.021 6.619 L 31.021 9.326 C 30.1 10.2 16.042 8.143 18.118 19.627"
+                fill="#0b3694"
+                transform="scale(-1, 1) translate(-50, 0)"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div class="mt-4">
+          <div
+            class="text-sm font-semibold uppercase tracking-wide text-indigo-500"
+          >
+            Source
+          </div>
+          <div class="mt-2">
+            <div class="flex flex-col flex-wrap gap-2">
+              <a
+                href="undefined"
+                target="_blank"
+                class="text-indigo-500 hover:text-indigo-600"
+                >undefined</a
+              >
+              <p>txt</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

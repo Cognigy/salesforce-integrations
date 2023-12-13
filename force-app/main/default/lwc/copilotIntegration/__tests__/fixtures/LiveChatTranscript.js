@@ -1,15 +1,13 @@
 import { faker } from "@faker-js/faker";
 
-const generateUrl = () =>
-  `${faker.internet.url({ appendSlash: true })}${faker.internet.domainWord()}`;
-
 export const liveChatTranscriptWithValidUrl = {
   apiName: "LiveChatTranscript",
   childRelationships: {},
   fields: {
     Copilot__c: {
       displayValue: null,
-      value: generateUrl()
+      value:
+        "http://localhost:6006/ai_copilot_workspace.html?sessionId=session-id&userId=user-id&URLToken=token"
     }
   },
   id: faker.string.alphanumeric({ casing: "upper", length: 18 }),
