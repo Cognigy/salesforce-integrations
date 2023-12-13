@@ -1,0 +1,6 @@
+{
+  "Salesforce Apps": {
+    "testLevel": "RunLocalTests",
+    "apps": ["force-app"]
+  }
+}
