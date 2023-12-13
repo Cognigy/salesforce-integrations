@@ -1,7 +1,6 @@
 export const isValidUrl = (string) => {
   try {
-    URL(string);
-    return true;
+    return !!new URL(string);
   } catch (err) {
     return false;
   }

@@ -12,7 +12,7 @@ export default class CopilotIntegration extends LightningElement {
   record;
 
   get recordData() {
-    return JSON.stringify(this.record);
+    return JSON.stringify(this.record, null, 2);
   }
 
   get copilotUrl() {

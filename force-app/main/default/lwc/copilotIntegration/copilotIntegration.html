@@ -1,15 +1,14 @@
 <template>
-  <lightning-card title="Cognigy Copilot" icon-name="custom:custom14">
-    <div class="slds-m-around_medium">
-      <template lwc:if={copilotUrl}>
-        <iframe src={copilotUrl} frameborder="0"></iframe>
-      </template>
+  <template lwc:if={copilotUrl}>
+    <div class="w_iframe">
+      <div class="h_iframe">
+        <iframe
+          src={copilotUrl}
+          class="copilot_iframe"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
     </div>
-    <div>
-      Debug data:
-      <pre>Record ID: {recordId}</pre>
-      <pre>Copilot URL: {copilotUrl}</pre>
-      <pre>Record Data: {recordData}</pre>
-    </div>
-  </lightning-card>
+  </template>
 </template>
