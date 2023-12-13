@@ -1,5 +1,5 @@
 <template>
-  <template lwc:if={copilotUrl}>
+  <template lwc:if={shouldShowIframe}>
     <div class="w_iframe">
       <div class="h_iframe">
         <iframe
@@ -12,9 +12,26 @@
     </div>
   </template>
   <template lwc:if={error}>
-    <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
-      <span class="slds-assistive-text">error</span>
-      <h2 class="copilot_integration_error">{error.message}</h2>
-    </div>
+    <lightning-card title="Cognigy Copilot">
+      <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+        <span class="slds-assistive-text">error</span>
+        <h2 class="copilot_integration_error">{error.message}</h2>
+      </div>
+      <lightning-accordion allow-multiple-sections-open active-section-name="">
+        <lightning-accordion-section
+          name="debug"
+          label="Additional information"
+        >
+          <dl>
+            <dt>Record ID</dt>
+            <dd>{recordId}</dd>
+            <dt>Copilot URL</dt>
+            <dd>{copilotUrl}</dd>
+            <dt>Record Data</dt>
+            <dd><pre>{recordData}</pre></dd>
+          </dl>
+        </lightning-accordion-section>
+      </lightning-accordion>
+    </lightning-card>
   </template>
 </template>

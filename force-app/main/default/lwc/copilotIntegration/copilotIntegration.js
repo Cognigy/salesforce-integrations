@@ -15,31 +15,46 @@ export default class CopilotIntegration extends LightningElement {
   })
   record;
 
-  copilotUrlError;
+  get recordData() {
+    return JSON.stringify(this.record, null, 2);
+  }
 
   get error() {
-    return this.copilotUrlError;
+    if (this.record.error) {
+      return new ErrorFetchingRecord(
+        `${this.record.error.statusText} (${this.record.error.status}): ${this.record.error.body}`
+      );
+    }
+
+    const copilotUrl = this.record.data?.fields?.Copilot__c?.value;
+    if (!copilotUrl) {
+      return new UrlNotFoundError(
+        "Could not find field 'Copilot__c'. Make sure to add this field to your Salesforce installation."
+      );
+    }
+    if (!isValidUrl(copilotUrl)) {
+      return new UrlInvalid(
+        `The field 'Copilot__c' does not contain a valid url (current value: "${copilotUrl}").`
+      );
+    }
+
+    return null;
+  }
+
+  get shouldShowIframe() {
+    return !this.error && this.copilotUrl;
   }
 
   get copilotUrl() {
     if (this.record.error) {
-      this.copilotUrlError = new ErrorFetchingRecord(
-        `${this.record.error.statusText} (${this.record.error.status}): ${this.record.error.body}`
-      );
       return "";
     }
 
     const copilotUrl = this.record.data?.fields?.Copilot__c?.value;
     if (!copilotUrl) {
-      this.copilotUrlError = new UrlNotFoundError(
-        "Could not find field 'Copilot__c'. Make sure to add this field to your Salesforce installation."
-      );
       return "";
     }
     if (!isValidUrl(copilotUrl)) {
-      this.copilotUrlError = new UrlInvalid(
-        `The field 'Copilot__c' does not contain a valid url (current value: "${copilotUrl}").`
-      );
       return "";
     }
 
