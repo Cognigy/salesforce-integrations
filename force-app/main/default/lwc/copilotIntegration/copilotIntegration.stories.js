@@ -2,7 +2,11 @@ import { buildCustomElementConstructor } from "lwc";
 import { html } from "lit";
 import { getRecord } from "lightning/uiRecordApi";
 import CopilotIntegration from "./copilotIntegration";
-import { liveChatTranscriptWithValidUrl } from "./fixtures/LiveChatTranscript";
+import {
+  liveChatTranscriptWithValidUrl,
+  liveChatTranscriptWithoutUrl,
+  liveChatTranscriptWithInvalidUrl
+} from "./fixtures/LiveChatTranscript";
 
 customElements.define(
   "c-copilot-integration",
@@ -17,6 +21,27 @@ export default {
 export const Default = () => {
   setTimeout(() => {
     getRecord.emit(liveChatTranscriptWithValidUrl);
+  }, 0);
+  return html`<c-copilot-integration></c-copilot-integration>`;
+};
+
+export const WithMissingCopilot__c = () => {
+  setTimeout(() => {
+    getRecord.emit(liveChatTranscriptWithoutUrl);
+  }, 0);
+  return html`<c-copilot-integration></c-copilot-integration>`;
+};
+
+export const WithFailedGetRecord = () => {
+  setTimeout(() => {
+    getRecord.error(new Error("some error"));
+  }, 0);
+  return html`<c-copilot-integration></c-copilot-integration>`;
+};
+
+export const WithInvalidCopilot__c = () => {
+  setTimeout(() => {
+    getRecord.emit(liveChatTranscriptWithInvalidUrl);
   }, 0);
   return html`<c-copilot-integration></c-copilot-integration>`;
 };

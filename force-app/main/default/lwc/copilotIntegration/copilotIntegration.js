@@ -2,6 +2,10 @@ import { LightningElement, wire, api } from "lwc";
 import { getRecord } from "lightning/uiRecordApi";
 import { isValidUrl } from "./isValidUrl";
 
+class ErrorFetchingRecord extends Error {}
+class UrlNotFoundError extends Error {}
+class UrlInvalid extends Error {}
+
 export default class CopilotIntegration extends LightningElement {
   @api recordId;
 
@@ -11,14 +15,33 @@ export default class CopilotIntegration extends LightningElement {
   })
   record;
 
-  get recordData() {
-    return JSON.stringify(this.record, null, 2);
+  copilotUrlError;
+
+  get error() {
+    return this.copilotUrlError;
   }
 
   get copilotUrl() {
+    if (this.record.error) {
+      this.copilotUrlError = new ErrorFetchingRecord(
+        `${this.record.error.statusText} (${this.record.error.status}): ${this.record.error.body}`
+      );
+      return "";
+    }
+
     const copilotUrl = this.record.data?.fields?.Copilot__c?.value;
-    if (!copilotUrl) return "";
-    if (!isValidUrl(copilotUrl)) return "";
+    if (!copilotUrl) {
+      this.copilotUrlError = new UrlNotFoundError(
+        "Could not find field 'Copilot__c'. Make sure to add this field to your Salesforce installation."
+      );
+      return "";
+    }
+    if (!isValidUrl(copilotUrl)) {
+      this.copilotUrlError = new UrlInvalid(
+        `The field 'Copilot__c' does not contain a valid url (current value: "${copilotUrl}").`
+      );
+      return "";
+    }
 
     return this.record.data.fields.Copilot__c.value;
   }

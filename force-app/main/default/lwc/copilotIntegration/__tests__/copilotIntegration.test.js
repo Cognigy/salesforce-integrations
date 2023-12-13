@@ -36,7 +36,7 @@ describe("c-copilot-integration", () => {
     );
   });
 
-  it("nothing if only the Copilot__c field is missing", async () => {
+  it("shows an error if only the Copilot__c field is missing from data", async () => {
     // Arrange
     const element = createElement("c-copilot-integration", {
       is: CopilotIntegration
@@ -51,11 +51,18 @@ describe("c-copilot-integration", () => {
 
     // Assert
     const iframe = element.shadowRoot.querySelector("iframe");
-
     expect(iframe).toBeNull();
+
+    const error = element.shadowRoot.querySelector(
+      ".copilot_integration_error"
+    );
+    expect(error).toBeInstanceOf(HTMLHeadingElement);
+    expect(error.textContent).toContain(
+      "Could not find field 'Copilot__c'. Make sure to add this field to your Salesforce installation."
+    );
   });
 
-  it("nothing if the record could not be fetched", async () => {
+  it("forwards error if the record could not be fetched", async () => {
     // Arrange
     const element = createElement("c-copilot-integration", {
       is: CopilotIntegration
@@ -70,8 +77,13 @@ describe("c-copilot-integration", () => {
 
     // Assert
     const iframe = element.shadowRoot.querySelector("iframe");
-
     expect(iframe).toBeNull();
+
+    const error = element.shadowRoot.querySelector(
+      ".copilot_integration_error"
+    );
+    expect(error).toBeInstanceOf(HTMLHeadingElement);
+    expect(error.textContent).toContain("NOT_FOUND (404): Error: some error");
   });
 
   it("shows an error if field value is not a valid url", async () => {
@@ -89,7 +101,14 @@ describe("c-copilot-integration", () => {
 
     // Assert
     const iframe = element.shadowRoot.querySelector("iframe");
-
     expect(iframe).toBeNull();
+
+    const error = element.shadowRoot.querySelector(
+      ".copilot_integration_error"
+    );
+    expect(error).toBeInstanceOf(HTMLHeadingElement);
+    expect(error.textContent).toContain(
+      `The field 'Copilot__c' does not contain a valid url (current value: "${liveChatTranscriptWithInvalidUrl.fields.Copilot__c.value}").`
+    );
   });
 });

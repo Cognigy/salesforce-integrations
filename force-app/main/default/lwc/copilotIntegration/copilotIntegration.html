@@ -11,4 +11,10 @@
       </div>
     </div>
   </template>
+  <template lwc:if={error}>
+    <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+      <span class="slds-assistive-text">error</span>
+      <h2 class="copilot_integration_error">{error.message}</h2>
+    </div>
+  </template>
 </template>
