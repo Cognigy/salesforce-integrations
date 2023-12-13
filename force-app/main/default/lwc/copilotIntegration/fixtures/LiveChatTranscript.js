@@ -1,13 +1,13 @@
 import { faker } from "@faker-js/faker";
 
+const domain = window?.location?.origin ?? "http://localhost:6006";
 export const liveChatTranscriptWithValidUrl = {
   apiName: "LiveChatTranscript",
   childRelationships: {},
   fields: {
     Copilot__c: {
       displayValue: null,
-      value:
-        "http://localhost:6006/ai_copilot_workspace.html?sessionId=session-id&userId=user-id&URLToken=token"
+      value: `${domain}/ai_copilot_workspace.html?sessionId=session-id&userId=user-id&URLToken=token`
     }
   },
   id: faker.string.alphanumeric({ casing: "upper", length: 18 }),

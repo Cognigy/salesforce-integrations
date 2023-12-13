@@ -2,7 +2,7 @@ import { buildCustomElementConstructor } from "lwc";
 import { html } from "lit";
 import { getRecord } from "lightning/uiRecordApi";
 import CopilotIntegration from "./copilotIntegration";
-import { liveChatTranscriptWithValidUrl } from "./__tests__/fixtures/LiveChatTranscript";
+import { liveChatTranscriptWithValidUrl } from "./fixtures/LiveChatTranscript";
 
 customElements.define(
   "c-copilot-integration",

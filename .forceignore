@@ -10,6 +10,7 @@ package.xml
 
 # LWC Jest
 **/__tests__/**
+**/fixtures/**
 
 # Storybook
 **/*.stories.js

@@ -6,7 +6,7 @@ import {
   liveChatTranscriptWithValidUrl,
   liveChatTranscriptWithoutUrl,
   liveChatTranscriptWithInvalidUrl
-} from "./fixtures/LiveChatTranscript";
+} from "../fixtures/LiveChatTranscript";
 
 // Helper function to wait until the microtask queue is empty.
 async function flushPromises() {
