@@ -61,13 +61,36 @@ After you have authorized the repository, you can deploy the included components
 
 ## Set up component
 
-### Add custom attribute
+### Add custom field to Chat Transcript object
 
-TODO: add explanation for receiving copilot embed url
+For the component to work, it relies on a custom field being present in the `Chat Transcript` object of Salesforce. To add this field:
+
+1. Navigate to the `Object Manager` in your Salesforce installation, then open the `Chat Transcript` object.
+   ![select object](docs/custom_property/01_select_object.png)
+2. Select the `Fields & Relations` Tab on the left side, click `New` on the top right to add a new field.
+   ![select chat transcript](docs/custom_property/02_add_new_field.png)
+3. Select the `URL` data type and click `Next`.
+   ![set data type](docs/custom_property/03_set_data_type.png)
+4. Enter `Copilot` as the field name. Do not deviate from this in spelling or casing, as the Cognigy component relies on it. You may enter a description if you like. Click `Next`.
+   ![set data type](docs/custom_property/04_enter_details.png)
+5. In the `Field security` section, do not change anything and click `Next`.
+   ![set data type](docs/custom_property/05_set_security.png)
+6. In the `Add to pages` section, make sure the `Chat Transcript` page is selected. Finish the field setup by clicking `Save`.
+   ![set data type](docs/custom_property/06_add_to_pages.png)
+
+Click on the newly created `Copilot` field and confirm that the details are correct. It should look like this:
+![finished configuration](docs/custom_property/07_finished.png)
 
 ### Integrate into Livechats
 
-TODO: add explanation for adding component to LiveChatTranscript record pages
+Finally, the Cognigy component needs to be added to the Chat Transcript page so it is accessible to agents.
+
+1. Navigate to the `Chat Transcript` section of your Salesforce instance. Then, click on the Lightning cog and select `Edit Page`
+   ![edit page](docs/add_to_page/edit_page.png)
+2. On the left side of the editor, scroll down to the `Custom` section. Click and drag the `Cognigy Copilot` component into the page layout into the position you want it to appear in.
+   ![add to page](docs/add_to_page/add_to_page.png)
+
+ℹ️ If you don't see the Cognigy Copilot after saving, make sure the page is properly activated. Refer to https://help.salesforce.com/s/articleView?id=sf.lightning_page_getting_into_salesforce1.htm&type=5 for details.
 
 # Development
 
