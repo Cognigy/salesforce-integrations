@@ -5,7 +5,8 @@ import CopilotIntegration from "c/copilotIntegration";
 import {
   liveChatTranscriptWithValidUrl,
   liveChatTranscriptWithoutUrl,
-  liveChatTranscriptWithInvalidUrl
+  liveChatTranscriptWithInvalidUrl,
+  liveChatTranscriptWithValidUrlNoQueryParam
 } from "../fixtures/LiveChatTranscript";
 
 // Helper function to wait until the microtask queue is empty.
@@ -31,9 +32,31 @@ describe("c-copilot-integration", () => {
     const iframe = element.shadowRoot.querySelector("iframe");
 
     expect(iframe).toBeInstanceOf(HTMLIFrameElement);
+    expect(new URL(iframe.src).searchParams.get("platform")).toBe("salesforce");
     expect(iframe.src).toBe(
       liveChatTranscriptWithValidUrl.fields.Copilot__c.value
     );
+  });
+
+  it("appends the platform query parameter to the url", async () => {
+    // Arrange
+    const element = createElement("c-copilot-integration", {
+      is: CopilotIntegration
+    });
+    document.body.appendChild(element);
+
+    // Act
+    getRecord.emit(liveChatTranscriptWithValidUrlNoQueryParam);
+
+    // Wait for any asynchronous DOM updates
+    await flushPromises();
+
+    // Assert
+    const iframe = element.shadowRoot.querySelector("iframe");
+
+    expect(iframe).toBeInstanceOf(HTMLIFrameElement);
+
+    expect(new URL(iframe.src).searchParams.get("platform")).toBe("salesforce");
   });
 
   it("shows an error if only the Copilot__c field is missing from data", async () => {

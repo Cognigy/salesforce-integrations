@@ -7,6 +7,23 @@ export const liveChatTranscriptWithValidUrl = {
   fields: {
     Copilot__c: {
       displayValue: null,
+      value: `${domain}/ai_copilot_workspace.html?sessionId=session-id&userId=user-id&URLToken=token&platform=salesforce`
+    }
+  },
+  id: faker.string.alphanumeric({ casing: "upper", length: 18 }),
+  lastModifiedById: faker.string.alphanumeric({ casing: "upper", length: 18 }),
+  lastModifiedDate: faker.date.recent().toISOString(),
+  recordTypeId: faker.string.alphanumeric({ casing: "upper", length: 18 }),
+  recordTypeInfo: null,
+  systemModstamp: faker.date.recent().toISOString()
+};
+
+export const liveChatTranscriptWithValidUrlNoQueryParam = {
+  apiName: "LiveChatTranscript",
+  childRelationships: {},
+  fields: {
+    Copilot__c: {
+      displayValue: null,
       value: `${domain}/ai_copilot_workspace.html?sessionId=session-id&userId=user-id&URLToken=token`
     }
   },

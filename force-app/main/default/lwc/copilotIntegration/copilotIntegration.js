@@ -19,6 +19,15 @@ export default class CopilotIntegration extends LightningElement {
     return JSON.stringify(this.record, null, 2);
   }
 
+  ensurePlatformParam(url) {
+    if (new URL(url).searchParams.get("platform")) return url;
+
+    const urlWithParam = new URL(url);
+    urlWithParam.searchParams.set("platform", "salesforce");
+
+    return urlWithParam.toString();
+  }
+
   get error() {
     if (this.record.error) {
       return new ErrorFetchingRecord(
@@ -58,6 +67,6 @@ export default class CopilotIntegration extends LightningElement {
       return "";
     }
 
-    return this.record.data.fields.Copilot__c.value;
+    return this.ensurePlatformParam(this.record.data.fields.Copilot__c.value);
   }
 }
