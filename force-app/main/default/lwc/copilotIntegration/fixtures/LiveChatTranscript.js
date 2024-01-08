@@ -1,4 +1,9 @@
 import { faker } from "@faker-js/faker";
+import isChromatic from "chromatic/isChromatic";
+
+if (isChromatic()) {
+  faker.seed(28472624);
+}
 
 const domain = window?.location?.origin ?? "http://localhost:6006";
 export const liveChatTranscriptWithValidUrl = {
