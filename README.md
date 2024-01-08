@@ -4,7 +4,7 @@ This repository contains a collection of all components developed and provided b
 
 ## Copilot Integration
 
-This component will integrate Cognigy Copilot directly into Chat Layouts
+This component will integrate Cognigy Copilot directly into Chat Layouts. [Demo](https://658d8d4043dc6727aed29fd1-cgdzcjhdkx.chromatic.com/?path=/story/copilotintegration--in-layout)
 
 # Setup
 
