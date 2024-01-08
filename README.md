@@ -8,9 +8,13 @@ This component will integrate Cognigy Copilot directly into Chat Layouts
 
 # Setup
 
+## Download the source code
+
+To start with, download a local copy of this repository onto your computer. Use git (`git clone https://github.com/Cognigy/salesforce-integrations.git`) or download and unpack it into a folder you can access again.
+
 ## Install CLI
 
-To start with, you need to install the Salesforce CLI. Find the installer here: https://developer.salesforce.com/tools/salesforcecli.
+Next, you need to install the Salesforce CLI. Find the installer here: https://developer.salesforce.com/tools/salesforcecli.
 
 A full installation guide is available here: https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm
 
