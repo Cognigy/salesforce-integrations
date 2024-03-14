@@ -63,7 +63,8 @@ After you have authorized the repository, you can deploy the included components
 2. Run `sf deploy`
 3. Specify the org you want to deploy into. If you have kept to the instructions so far, only one organization should be selectable.
 4. Hit enter.
-5. Automated tests will run. If they are successful, the component will be deployed into your Salesforce instance.
+5. Select `project deploy start` from the options.
+6. Automated tests will run. If they are successful, the component will be deployed into your Salesforce instance.
 
 ℹ️ If you encounter problems during this step, refer to the [Troubleshooting](#troubleshooting) section before contacting Cognigy support.
 
