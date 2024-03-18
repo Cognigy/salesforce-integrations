@@ -102,6 +102,12 @@ Finally, the Cognigy component needs to be added to the Chat Transcript page, so
 
 ℹ️ If you don't see the Cognigy Copilot after saving, make sure the page is properly activated. Refer to https://help.salesforce.com/s/articleView?id=sf.lightning_page_getting_into_salesforce1.htm&type=5 for details.
 
+# Update
+
+To update the component, you can simply run `sf deploy` again. The component will be updated in your Salesforce instance.
+
+Be aware that this will not update the component in existing conversations. You will need to manually update the component in the `Chat Transcript` page layout. To do so, follow the [Integrate into Livechats](#integrate-into-livechats) section again.
+
 # Development
 
 ## VSCode
