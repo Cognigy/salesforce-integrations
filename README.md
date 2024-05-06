@@ -1,144 +1,201 @@
 # Overview
 
-This repository contains a collection of all components developed and provided by Cognigy to facilitate a seamless integration with Salesforce.
+This repository contains a collection of all components developed and provided by Cognigy to facilitate seamless integration with Salesforce.
 
 ## Copilot Integration
 
-This component will integrate Cognigy Copilot directly into Chat Layouts. [Demo](https://658d8d4043dc6727aed29fd1-cgdzcjhdkx.chromatic.com/?path=/story/copilotintegration--in-layout)
+This new functionality will enable the seamless integration of Cognigy Copilot directly into Chat Layouts, allowing for a more streamlined and efficient experience. With this feature, users can easily access and utilize the powerful capabilities of Cognigy Copilot without having to navigate away from the conversation chat. To get a better idea of how this feature works, check out a [demo](https://658d8d4043dc6727aed29fd1-cgdzcjhdkx.chromatic.com/?path=/story/copilotintegration--in-layout).
 
 # Setup
 
-## Download the source code
+## Download the Source Code
 
-To start with, download a local copy of this repository onto your computer. Use git (`git clone https://github.com/Cognigy/salesforce-integrations.git`) or download and unpack it into a folder you can access again.
+To begin, download a local copy of this repository onto your computer. You can run [git clone](https://github.com/Cognigy/salesforce-integrations.git) in the terminal or download and unpack the repository into a folder for easy access later.
 
 ## Install CLI
 
-Next, you need to install the Salesforce CLI. Find the installer here: https://developer.salesforce.com/tools/salesforcecli.
+Install the [Salesforce CLI](https://developer.salesforce.com/tools/salesforcecli). For a detailed installation guide, refer to the [Install Salesforce CLI](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm) documentation.
 
-A full installation guide is available here: https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm
+## Set up Languages
+ 
+All the components have been built and tested on Node.js version 21.4.0. You can check your version with the `node -v` command. Ensure that you have a matching version installed using your preferred method.
 
-## Setup languages
+Although using [asdf](https://asdf-vm.com/) is recommended, it's optional. If you already have the correct version of Node.js, you can go ahead and [fetch dependencies](#fetch-dependencies). 
+If you want to use `asdf`, follow the instructions:
 
-The components have been built and tested on nodeJS version 21.4.0. You can check your version with `node -v`. Make sure you have a matching version number through your preferred installation method.
+1. Refer to the [installation guide](https://asdf-vm.com/guide/getting-started.html).
+2. Install the Node.js plugin and the correct version by executing the following command via the terminal:
 
-We recommend using [asdf](https://asdf-vm.com/), but this is optional. Proceed with [Fetch dependencies](#fetch-dependencies) if you already have the right node version. To use asdf:
+   ```bash
+   asdf plugin-add nodejs
+   ```
 
-1. Follow the installation guide: https://asdf-vm.com/guide/getting-started.html
-2. Install the NodeJS plugin and install the right version by running the following command in a terminal window
+3. Restart your terminal.
+4. Open the terminal in the project root directory and run the following command:
 
-```bash
-asdf plugin-add nodejs
-```
+   ```bash
+   asdf install
+   ```
 
-3. Restart your terminal
-4. Open a terminal in the project root directory and run the following commands:
+## Fetch Dependencies
 
-```bash
-asdf install
-```
+To fetch dependencies, follow these steps:
 
-## Fetch dependencies
+1. In the terminal, open in the `salesforce-integrations` folder.
+2. Run the following command:
+   ```bash
+   npm i
+   ```
 
-1. Open a terminal in the `salesforce-integrations` folder
-2. Run the following command `npm i`
-
+All the dependencies are fetched.
+    
 # Installation
 
-## Deploy component to Salesforce
+## Deploy a Component to Salesforce
 
 ### Authorize
 
-To deploy the component into your Salesforce installation, you need to authorize it first. In your terminal:
+To deploy a component into your Salesforce installation, you need to authorize it first:
 
-1. Run `sf org login`
-2. Chose a preferred authorization method
-3. Done
+1. In the terminal, run the following command:
+   ```bash
+   sf org login
+   ```
+2. Select a preferred authorization method.
 
-### Deployment
+Your component is authorized.
 
-After you have authorized the repository, you can deploy the included components into your Salesforce installation. This will enable you to drop Cognigy components into your Salesforce pages. It will not change any existing pages.
+### Deploy
 
-1. Open a shell in the project root directory.
-2. Run `sf deploy`
-3. Specify the org you want to deploy into. If you have kept to the instructions so far, only one organization should be selectable.
-4. Hit enter.
-5. Select `project deploy start` from the options.
-6. Automated tests will run. If they are successful, the component will be deployed into your Salesforce instance.
+After the authorization, you can deploy the component into your Salesforce installation. This action will enable you to drop Cognigy components into your Salesforce pages. It will not change any existing pages.
 
-ℹ️ If you encounter problems during this step, refer to the [Troubleshooting](#troubleshooting) section before contacting Cognigy support.
+1. In the terminal, open in the project root directory.
+2. Run the following command:
+   
+   ```bash
+   sf deploy
+   ```
+4. Specify the organization you want to deploy into. You can specify only one organization.
+5. Press **Enter**.
+6. From the list, select `project deploy start`.
 
-## Set up component
+Automated tests will run. After successful automated tests, the component will be deployed to your Salesforce instance.
 
-### Add custom field to Chat Transcript object
+> Note: If you encounter problems during this step, refer to the [Troubleshooting](#troubleshooting) section before contacting Cognigy technical support.
 
-For the component to work, it relies on a custom field being present in the `Chat Transcript` object of Salesforce. To add this field:
+## Set up the Component
 
-1. Navigate to the `Object Manager` in your Salesforce installation, then open the `Chat Transcript` object.
+### Add a Custom Field to the Chat Transcript object
+
+To ensure the component functions properly, a custom field must be present in Salesforce's Chat Transcript object. To add this field:
+
+1. Navigate to the Object Manager in your Salesforce installation, then open the **Chat Transcript** object.
+   
    ![select object](docs/custom_property/01_select_object.png)
-2. Select the `Fields & Relations` Tab on the left side, click `New` on the top right to add a new field.
+   
+2. Click **New** to add a new field next to the search field.
+   
    ![select chat transcript](docs/custom_property/02_add_new_field.png)
-3. Select the `URL` data type and click `Next`.
+   
+3. Select the **URL** data type and click **Next**.
+ 
    ![set data type](docs/custom_property/03_set_data_type.png)
-4. Enter `Copilot` as the field name. Do not deviate from this in spelling or casing, as the Cognigy component relies on it. You may enter a description if you like. Click `Next`.
+   
+4. In **Field Name** and **Field Lable**, specify `Copilot`.  Ensure spelling and casing match exactly, as the Cognigy component relies on it. Optionally, provide a description. Then, click **Next**.
+   
    ![set data type](docs/custom_property/04_enter_details.png)
-5. In the `Field security` section, do not change anything and click `Next`.
+   
+5. Do not change anything in the **Field security** section and click `Next`.
+   
    ![set data type](docs/custom_property/05_set_security.png)
-6. In the `Add to pages` section, make sure the `Chat Transcript` page is selected. Finish the field setup by clicking `Save`.
+   
+6. In the **Add to pages** section, ensure the **Chat Transcript** page is selected.
+   
+7. Click **Save**.
+   
    ![set data type](docs/custom_property/06_add_to_pages.png)
-
-Click on the newly created `Copilot` field and confirm that the details are correct. It should look like this:
-![finished configuration](docs/custom_property/07_finished.png)
+   
+8. Click the newly created **Copilot** field to ensure the details are correct. It should appear as follows:
+   
+   ![finished configuration](docs/custom_property/07_finished.png)
 
 ### Integrate into Livechats
 
-Finally, the Cognigy component needs to be added to the Chat Transcript page, so it is accessible to agents.
+Finally, the Cognigy component needs to be added to the **Chat Transcript** page to make it accessible to agents.
 
-1. Navigate to the `Chat Transcript` section of your Salesforce instance. Open any chat transcript. If you don't have any, you can create one by starting a chat with a test user.
-2. Then, click on the Lightning cog and select `Edit Page`
+1. Navigate to the **Chat Transcript** section of your Salesforce instance. Open any chat transcript. If you don't have any, you can create one by starting a chat with a test user.
+2. In the upper-right corner, click the **Gear** icon and select **Edit Page**.
+   
    ![edit page](docs/add_to_page/edit_page.png)
-3. On the left side of the editor, scroll down to the `Custom` section. Click and drag the `Cognigy Copilot` component into the page layout into the position you want it to appear in. Finish up by clicking save. Cognigy Copilot should now be available in all new conversations!
+   
+3. On the left side of the editor, scroll down to the **Custom** section.
+4. Click and drag the **Cognigy Copilot** component into the page layout, positioning it where you want it to appear. 
+5. Click **Save**. Cognigy Copilot should now be available in all new conversations.
+   
    ![add to page](docs/add_to_page/add_to_page.png)
 
-ℹ️ If you don't see the Cognigy Copilot after saving, make sure the page is properly activated. Refer to https://help.salesforce.com/s/articleView?id=sf.lightning_page_getting_into_salesforce1.htm&type=5 for details.
+> Note: If you don't see the Cognigy Copilot after saving, ensure the page is properly activated. For details, refer to the [Salesforce](https://help.salesforce.com/s/articleView?id=sf.lightning_page_getting_into_salesforce1.htm&type=5) documentation.
 
 # Update
 
-To update the component, you can simply run `sf deploy` again. The component will be updated in your Salesforce instance.
+To update the component, run the following command:
 
-Be aware that this will not update the component in existing conversations. You will need to manually update the component in the `Chat Transcript` page layout. To do so, follow the [Integrate into Livechats](#integrate-into-livechats) section again.
+```bash
+sf deploy
+```
+
+The component will be updated in your Salesforce instance.
+
+Be aware that this will not update the component in existing conversations. You will need to manually update the component in the **Chat Transcript** page layout. To do so, follow the [Integrate into Livechats](#integrate-into-livechats) section.
 
 # Development
 
-## VSCode
+## Visual Studio Code
 
-For a smooth developer experience, it is recommended to follow the Salesforce setup guide for Visual Studio Code: https://trailhead.salesforce.com/content/learn/projects/quick-start-lightning-web-components/set-up-visual-studio-code
+For a smooth developer experience, follow the Salesforce setup guide for [Visual Studio Code](https://trailhead.salesforce.com/content/learn/projects/quick-start-lightning-web-components/set-up-visual-studio-code).
 
 ## Linting
 
-You can lint the project by running `npm run lint`
+You can lint the project by running the following command:
+
+```bash
+npm run lint
+```
 
 ## Tests
 
-The components in this repositories are developed under a test-driven approach. You can run the tests with `npm run test:unit`
+The components in this repository are developed using a test-driven approach. You can run the tests with the following command:
+
+```bash
+npm run test:unit
+```
 
 ## Sandbox
 
-For demo purposes and maintaining visual consistency, the component(s) in this repository can be previewed in a sandboxed environment. To start it, run `npm run storybook`.
+For demo purposes and to maintain visual consistency, the components in this repository can be previewed in a sandboxed environment. 
+To launch the sandbox, run the following command:
+
+```bash
+npm run storybook`
+```
 
 # Troubleshooting
 
-## Test failures preventing deployment
+## Test Failures Preventing Deployment
 
-In some cases, you might not be able to get the automated testing to run on your local machine. The error might look something like this:
+In certain cases, running automated tests on your local machine may not be possible. You might encounter an error similar to this:
+
 ![image](https://github.com/Cognigy/salesforce-integrations/assets/8217788/54abdbbb-7d50-4726-9d37-52583a654362)
 
-To circumvent this, you can skip the testing stage and force a deployment. All components are tested by Cognigy before they are released. Unless you made changes to the source code, skipping the tests locally should not be an issue.
+If no changes were made to the source code, you can skip testing and force deployment. Cognigy tests all components before release.
 
-To force a deployment:
+To force deployment:
 
-1. Open a terminal in the `salesforce-integrations` folder
-2. Run the following command: `sfdx force:source:deploy -p force-app/main/default/lwc/copilotIntegration -u
-your_login_username@example.com`
+1. In the terminal, open the the `salesforce-integrations` folder.
+2. Run the following command replacing `your_login_username@example.com` with your actual username:
 
-⚠️ Replace `your_login_username@example.com` with your actual username
+   ```bash
+   sfdx force:source:deploy -p force-app/main/default/lwc/copilotIntegration -u
+   your_login_username@example.com`
+   ```
+The changes will be applied.
