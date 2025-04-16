@@ -11,7 +11,7 @@ export default class CopilotIntegration extends LightningElement {
 
   @wire(getRecord, {
     recordId: "$recordId",
-    fields: ["LiveChatTranscript.Copilot__c"]
+    fields: ["MessagingSession.Copilot__c"]
   })
   record;
 
