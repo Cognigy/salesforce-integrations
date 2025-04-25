@@ -16,7 +16,7 @@ To begin, download a local copy of this repository onto your computer. You can r
 
 Install the [Salesforce CLI](https://developer.salesforce.com/tools/salesforcecli). For a detailed installation guide, refer to the [Install Salesforce CLI](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm) documentation.
 
-## Set up Languages
+## Set up Node.js
 
 All the components have been built and tested on Node.js version 21.4.0. You can check your version with the `node -v` command. Ensure that you have a matching version installed using your preferred method.
 
@@ -102,7 +102,7 @@ To ensure the component functions properly, a custom field must be present in Sa
 
    ![set data type](docs/custom_property/03_set_data_type.png)
 
-4. In **Field Name** and **Field Lable**, specify `Copilot`. Ensure spelling and casing match exactly, as the Cognigy component relies on it. Optionally, provide a description. Then, click **Next**.
+4. In **Field Name** and **Field Lable**, specify `Copilot`. Ensure spelling and casing match exactly, as the Cognigy component depends on them. Optionally, provide a description. Then, click **Next**.
 
    ![set data type](docs/custom_property/04_enter_details.png)
 
@@ -191,7 +191,7 @@ If no changes were made to the source code, you can skip testing and force deplo
 
 To force deployment:
 
-1. In the terminal, open the the `salesforce-integrations` folder.
+1. In the terminal, open the `salesforce-integrations` folder.
 2. Run the following command replacing `your_login_username@example.com` with your actual username:
 
    ```bash
