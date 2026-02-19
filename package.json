@@ -18,7 +18,7 @@
     "build-storybook": "storybook build"
   },
   "devDependencies": {
-    "@faker-js/faker": "8.3.1",
+    "@faker-js/faker": "10.3.0",
     "@storybook/addon-essentials": "^8.6.17",
     "@storybook/addon-links": "^8.6.17",
     "@storybook/web-components-webpack5": "^8.6.17",
