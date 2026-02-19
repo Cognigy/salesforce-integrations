@@ -26,6 +26,7 @@ export default defineConfig([
     "**/aura/**/*.app",
     ".sfdx",
     ".storybook",
+    "storybook-static",
     "node_modules"
   ]),
 
