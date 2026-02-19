@@ -23,7 +23,7 @@
     "@storybook/addon-links": "^8.6.17",
     "@storybook/web-components-webpack5": "^8.6.17",
     "@lwc/eslint-plugin-lwc": "^3.0.0",
-    "@lwc/module-resolver": "^5.2.0",
+    "@lwc/module-resolver": "^9.0.2",
     "@prettier/plugin-xml": "3.2.2",
     "@salesforce-ux/design-system": "2.22.2",
     "@eslint/compat": "^1.2.0",
