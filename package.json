@@ -39,7 +39,7 @@
     "globals": "^16.0.0",
     "husky": "^7.0.4",
     "lightning-base-components": "1.21.1-alpha",
-    "lint-staged": "^12.3.7",
+    "lint-staged": "^16.2.7",
     "lit": "^3.1.0",
     "lwc": "^5.2.0",
     "lwc-webpack-plugin": "^3.0.5",
