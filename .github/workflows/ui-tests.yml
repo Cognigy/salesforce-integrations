@@ -51,7 +51,7 @@ jobs:
       - name: Install dependencies
         run: npm i
       - name: Publish to Chromatic
-        uses: chromaui/action@v1
+        uses: chromaui/action@v15
         with:
           # Grab this from the Chromatic manage page
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
