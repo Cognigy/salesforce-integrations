@@ -45,7 +45,7 @@
     "lwc-webpack-plugin": "^3.0.5",
     "prettier": "3.1.1",
     "prettier-plugin-apex": "2.0.1",
-    "react": "^18.2.0",
+    "react": "^19.2.4",
     "react-dom": "^18.2.0",
     "storybook": "^8.6.17"
   },
